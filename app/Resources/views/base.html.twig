@@ -1,0 +1,31 @@
+{#% spaceless %#}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>{% block title %} Ofertas Ganguera {% endblock %}</title>
+        
+        {% block rss %}{% endblock %}
+        
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        <link href="{{ asset('bundles/frontend/css/bootstrap.css') }}" rel="stylesheet" type="text/css" />
+        <link href="{{ asset('bundles/frontend/css/bootstrap-responsive.css') }}" rel="stylesheet" type="text/css" />
+        <link href="{{ asset('stylos_comun.css') }}" rel="stylesheet" type="text/css" />
+        {% block stylesheets %}{% endblock %}
+        {% block const_js %}{% endblock %}
+    </head>
+    
+    <body>
+        {% block body %}{% endblock %}
+            
+        <script src="{{ asset('bundles/frontend/js/jquery.js') }}"></script>
+        <script src="{{ asset('bundles/frontend/js/bootstrap.js') }}"></script>
+        <script src="{{ asset('bundles/frontend/js/validar_forms.js') }}"></script>
+        
+        {% block javascripts %}{% endblock %}
+    </body>
+</html>
+{#% endspaceless %#}

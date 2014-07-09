@@ -1,0 +1,42 @@
+{% extends '::base.html.twig' %}
+
+{% block stylesheets %}
+<style type="text/css">
+        footer {
+            text-align: center
+        }
+    </style>
+    <link rel="shortcut icon" href="{{ asset('bundles/frontend/img/favicon.ico') }}" />
+{% endblock %}
+
+{% block body %}
+    
+<h2 style="text-align: center">Panel de administraci&oacute;n</h2>
+<br/>
+
+<div class="container-fluid">
+    <div class="row-fluid">
+
+        <div class="span3">
+            <div class="well sidebar-nav">
+                <ul class="nav nav-list">
+                    <li class="nav-header"> Acciones </li>
+                    <li><a href="{{ path('backend_iniciopage') }}"><i class="icon-chevron-right"></i>Inicio</a></li>
+                    <li><a href="{{ path('backend_user') }}"><i class="icon-chevron-right"></i>Usuarios</a></li>
+                    <li><a href="{{ path('prov') }}"><i class="icon-chevron-right"></i>Provincias</a></li>
+                    <li><a href="{{ path('oferta') }}"><i class="icon-chevron-right"></i>Ofertas</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="span9">
+            {% block contenido %}{% endblock %}
+        </div>
+    </div>
+    <hr/>
+    <footer>
+        <p>&copy; Ganguera Ofertas Administracion - {{ 'now' | date('Y') }}</p>
+    </footer>
+</div>
+
+{% endblock %}

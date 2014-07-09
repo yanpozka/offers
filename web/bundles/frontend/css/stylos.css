@@ -1,0 +1,21 @@
+body {
+    padding-top: 60px;
+    padding-bottom: 40px;
+}
+
+.sidebar-nav {
+    padding: 9px 0;
+}
+
+.listado_ofertas a {
+    font-size: large
+}
+
+.listado_ofertas chiki a {
+    font-size: medium !important;
+}
+
+.listado_ofertas a:hover {
+    text-decoration-color: white !important;
+    text-decoration: underline !important;
+}

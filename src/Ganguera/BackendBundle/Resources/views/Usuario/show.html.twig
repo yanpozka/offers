@@ -1,0 +1,80 @@
+{% extends '::backend.html.twig' %}
+
+{% block contenido -%}
+<a class="btn btn-inverse" href="{{ path('backend_user') }}">
+    << Regresar al listado
+</a>
+<br>
+<br>
+<h2>Usuario <i>{{ entity.nombre }}</i></h2>
+
+<table class="table">
+    <tbody>
+        <tr>
+            <th>Id</th>
+            <td>{{ entity.id }}</td>
+        </tr>
+        <tr>
+            <th>Nombre</th>
+            <td>{{ entity.nombre }}</td>
+        </tr>
+        <tr>
+            <th>Correo</th>
+            <td>{{ entity.correo }}</td>
+        </tr>
+        <tr>
+            <th>Ip Registro</th>
+            <td>{{ entity.ipregister }}</td>
+        </tr>
+        <tr>
+            <th>Ip &Uacute;ltima visita</th>
+            <td>{{ entity.iplastvisit }}</td>
+        </tr>
+        <tr>
+            <th>Fecha Registro</th>
+            <td>{{ entity.dateregister|date('Y-m-d H:i:s') }}</td>
+        </tr>
+        <tr>
+            <th>Fecha &Uacute;ltima visita</th>
+            <td>{{ entity.datelastvisit|date('Y-m-d H:i:s') }}</td>
+        </tr>
+        <tr>
+            <th>Declaraci&oacute;n</th>
+            <td>{{ entity.declaracion }}</td>
+        </tr>
+        <tr>
+            <th>Phone</th>
+            <td>{{ entity.phone }}</td>
+        </tr>
+        <tr>
+            <th>Direcci&oacute;n</th>
+            <td>{{ entity.direccion }}</td>
+        </tr>
+        <tr>
+            <th>Imagen</th>
+            <td>
+                {% if entity.imgavatar %}
+                    <img width="100" height="100" src="{{ asset(entity.getWebPath()) }}" />
+                        {% else %}
+                    <img width="100" height="100" src="{{ asset('personal.png') }}" />
+                        {% endif %}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="row-fluid">
+        <div class="span5">
+            <a class="btn btn-info" href="{{ path('backend_user_edit', { 'id': entity.id }) }}">
+                Editar
+            </a>
+        </div>
+        <div class="span5">
+            <form action="{{ path('backend_user_delete', { 'id': entity.id }) }}" method="post">
+                <input type="hidden" name="_method" value="DELETE" />
+            {{ form_widget(delete_form) }}
+                <button class="btn btn-warning" type="submit">x Eliminar</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}

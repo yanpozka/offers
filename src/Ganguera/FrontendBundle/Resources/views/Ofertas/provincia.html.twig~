@@ -1,0 +1,66 @@
+{% extends '::frontend.html.twig' %}
+
+{% block title %}
+Ofertas de la provincia {{ title }}
+{% endblock %}
+
+{% block contenido %}
+
+<h3 style="text-align: center">Ofertas de la provincia {{ title }}</h3>
+
+<form action="" method="post">
+    <div class="well container-fluid">
+        <div class="row-fluid">
+            <div class="span2">
+                <button type="submit" class="btn btn-danger btn-large"><i class="icon-search"></i> Buscar</button>
+            </div>
+            <div class="span2">
+                <input type="text" class="input-small search-query" placeholder="T&iacute;tulo ...">
+            </div>
+            <div class="span3">
+                <input type="text" class="input-medium search-query" size="30" placeholder="Descripci&oacute;n ... ">
+            </div>
+            <div class="span1">
+                <input type="number" class="input-mini" min="0" placeholder="min"> 
+            </div>
+            <div class="span1">
+                <input type="number" class="input-mini" min="0" placeholder="max">
+            </div>
+            <div class="span3">
+                <input type="date" class="input-medium" /> 
+            </div>
+        </div>
+    </div>
+</form>
+
+<ul class="nav nav-tabs nav-stacked" id="ul_istado_ofertas">
+    <li style="text-align: center">
+        <img src="{{ asset('bundles/frontend/img/loader.gif') }}" />
+    </li>
+<li>&nbps;</li><li>&nbps;</li><li>&nbps;</li><li>&nbsp;</li>
+</ul>
+
+<div class="pagination" style="text-align: center">
+    <ul>
+        <li class="disabled"><a href="#"><<</a></li>
+        <li class="active">
+            <a href="#">1</a>
+        </li>
+        <li><a href="#">2</a></li>
+        <li><a href="#">3</a></li>
+        <li><a href="#">4</a></li>
+        <li><a href="#">>></a></li>
+    </ul>
+</div>
+{% endblock %} 
+    
+{% block const_especificas_js %}
+    <script>
+    SLUG_ACTUAL = '{{ slug_act }}'
+    URL_GET_OFERTAS_PROV = '{{ url_get_op }}'
+    </script>
+{% endblock %}
+    
+{% block javascripts_especificos %}
+    <script src="{{ asset('bundles/frontend/js/mostrar_oferta_prov.js') }}"></script>
+{% endblock %}

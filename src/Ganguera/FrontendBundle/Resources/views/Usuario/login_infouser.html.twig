@@ -1,0 +1,24 @@
+{% if error is defined %}
+    <div>{{ error.message }}</div>
+{% endif %}
+
+{% if is_granted('ROLE_USUARIO') %}
+    {% set usuario = app.user %}
+
+<div class="navbar-text pull-right">
+    {#{ usuario.getUrl() }#}
+    Bienvenido <a href="{{ path('frontend_usuario_detalles', {'id_user': usuario.id}) }}">{{ usuario }}</a>
+    <a class="btn btn-mini btn-danger" href="{{ path('frontend_usuario_logout') }}"><i class="icon-off"></i> Salir</a>
+</div>
+
+{% else %}
+<form method="post" action="{{ path('frontend_login_check') }}" class="form-inline navbar-form pull-right">
+    <span class="label">Correo</span>
+    <input type="text" placeholder="tucorreo@dominio.com" name="_username" value="{{ last_username | default('') }}" class="input-small search-query span2">
+    <span class="label">Clave</span> <input type="password" name="_password" placeholder="Clave" class="input-small search-query span2">
+    <button type="submit" href="#" class="btn btn-info btn-mini">Acceder</button>
+    <strong> &nbsp;o </strong>
+    <a href="{{ path('frontend_usuario_registrar') }}"> Reg&iacute;strate </a>
+</form>
+{% endif %}
+

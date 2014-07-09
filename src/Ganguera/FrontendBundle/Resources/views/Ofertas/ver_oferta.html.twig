@@ -1,0 +1,13 @@
+{% extends '::frontend.html.twig' %}
+
+{% block title %}
+    {{ title }}
+{% endblock %}
+
+{% block contenido %}
+    
+    {#{ app.session.flash('insertada') }#}
+
+    {% include 'FrontendBundle:Ofertas:detalles_oferta.html.twig' with { 'oferta': oferta } only %}
+
+{% endblock %}

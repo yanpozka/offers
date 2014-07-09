@@ -1,0 +1,154 @@
+{% extends '::frontend.html.twig' %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block contenido %}
+
+<div class="row-fluid" id="insertar_oferta_id">
+    <div class="span12">
+        <form class="form-horizontal" action="{{ path('frontend_add_oferta') }}" method="post" {{ form_enctype(formulario) }}>
+            <fieldset>
+                <legend>
+                    <h3>Publicar nueva oferta</h3>
+                    <!--<small>Los campos marcados como (*) son obligatorios</small>-->
+                </legend>
+            </fieldset>
+
+            {% if form_errors(formulario) %}
+            <div class="alert alert-error">
+                <a class="close" data-dismiss="alert">x</a>
+                    {{ form_errors(formulario) }}
+            </div>
+            {% endif %}
+
+            {% from 'FrontendBundle:Usuario:campo_form.html.twig' import div_fila %}
+            <div class="control-group{% if form_errors(formulario.titulo) %} error{% endif %}">
+                <label class="control-label" for="inputTitulo">T&iacute;tulo: </label>
+                <div class="controls">
+                        {{ form_widget(formulario.titulo, { 'attr': {
+                            'id': 'inputTitulo',
+                            'size' : 25,
+                            'placeholder': 'Titulo comenzando por mayusculas'
+                        }
+                        })}}
+                        <a href="#a"><i class="icon-warning-sign" rel="tooltip" title="Debe ser alfanumerico junto con .,;()[]"></i></a>
+
+                        <span class="help-inline">{{ form_errors(formulario.titulo) }}</span>
+                    </div>
+                </div>
+
+                <div class="control-group{% if form_errors(formulario.cost) %} error{% endif %}">
+                    <label class="control-label" for="inputCosto">Costo: </label>
+
+                    <div class="controls">
+                        <div class="input-prepend input-append">
+                            <span class="add-on">$</span>
+                            {{ form_widget(formulario.cost, { 'attr': {
+                                'id': 'inputCosto',
+                                'value': 1,
+                                'class': 'span2',
+                                'min': 0,
+                                'max': 1000000
+                            }
+                            }) }}
+                            <span class="add-on">.00</span>
+                        </div>
+
+                        <a href="#a"><i class="icon-warning-sign" rel="tooltip" title="Solo n&u&uacute;meros."></i></a>
+                        <span class="help-inline">{{ form_errors(formulario.cost) }}</span>
+                    </div>
+                </div>
+
+                <div class="control-group{% if form_errors(formulario.datestart) %} error{% endif %}">
+                    <label class="control-label" for="inputDatestart">Fecha inicio: </label>
+                    <div class="controls">
+                        {{ form_widget(formulario.datestart, { 'attr': {
+                            'id': 'inputDatestart'
+                        }
+                        })}}
+                            <!--<a href="#a"><i class="icon-warning-sign" rel="tooltip" title="Fecha de inicio"></i></a>-->
+                            <span class="help-inline">{{ form_errors(formulario.datestart) | raw }}</span>
+                        </div>
+                    </div>
+
+                    <div class="control-group{% if form_errors(formulario.datefinish) %} error{% endif %}">
+                        <label class="control-label" for="inputDatefin">Fecha fin: </label>
+                        <div class="controls">
+                        {{ form_widget(formulario.datefinish, { 'attr': {
+                            'id': 'inputDatefin'
+                        }
+                        })}}
+                                <!--<a href="#a"><i class="icon-warning-sign" rel="tooltip" title="Fecha de inicio"></i></a>-->
+                                <span class="help-inline">{{ form_errors(formulario.datefinish) }}</span>
+                            </div>
+                        </div>
+
+                        <div class="control-group{% if form_errors(formulario.description) %} error{% endif %}">
+                            <label class="control-label" for="inputDescription">Descripci&oacute;n: </label>
+                            <div class="controls">
+                        {{ form_widget(formulario.description, {'attr': {
+                            'id': 'inputDescription'
+                        }
+                        })}}
+                                    <!--<a href="#a"><i class="icon-warning-sign" rel="tooltip" title="Fecha de inicio"></i></a>-->
+                                    <span class="help-inline">{{ form_errors(formulario.description) }}</span>
+                                </div>
+                            </div>
+
+                            <div class="control-group{% if form_errors(formulario.provincia) %} error{% endif %}">
+                                <label class="control-label" for="inputProvinicia">Provinicia: </label>
+                                <div class="controls">
+                        {{ form_widget(formulario.provincia, {'attr': {
+                            'id': 'inputProvinicia'
+                        }
+                        })}}
+                                        <!--<a href="#a"><i class="icon-warning-sign" rel="tooltip" title="Fecha de inicio"></i></a>-->
+                                        <span class="help-inline">{{ form_errors(formulario.provincia) }}</span>
+                                    </div>
+                                </div>
+                
+                                <div class="control-group{% if form_errors(formulario.path_img) %} error{% endif %}">
+                                    <label class="control-label" for="inputImagen">Imagen: </label>
+                                    <div class="controls">
+                                            {{ form_widget(formulario.path_img, {'attr': {
+                                                'id': 'inputImagen'
+                                            }
+                                            })}}
+                                            <span class="help-inline">{{ form_errors(formulario.path_img) }}</span>
+                                        </div>
+                                    </div>
+                                    
+                                <div class="control-group{% if form_errors(formulario.path_img_1) %} error{% endif %}">
+                                    <label class="control-label" for="inputImagenAdc1">Imagen adicional: </label>
+                                    <div class="controls">
+                                            {{ form_widget(formulario.path_img_1, {'attr': {
+                                                'id': 'inputImagenAdc1'
+                                            }
+                                            })}}
+                                            <span class="help-inline">{{ form_errors(formulario.path_img_1) }}</span>
+                                        </div>
+                                    </div>
+                
+                                <div class="control-group{% if form_errors(formulario.path_img_2) %} error{% endif %}">
+                                    <label class="control-label" for="inputImagenAdc2">Imagen adicional: </label>
+                                    <div class="controls">
+                                            {{ form_widget(formulario.path_img_2, {'attr': {
+                                                'id': 'inputImagenAdc2'
+                                            }
+                                            })}}
+                                            <span class="help-inline">{{ form_errors(formulario.path_img_2) }}</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="control-group">
+                                        <label class="control-label" for=""> </label>
+                                        <div class="controls">
+                                            <button style="margin-right: 45px" type="submit" class="btn btn-primary">Publicar</button>
+                                            <button type="reset" class="btn">Limpiar</button>
+                                        </div>
+                                    </div>
+                {{ form_rest(formulario) }}
+                                </form>
+                            </div>
+                        </div>
+{% endblock %} 

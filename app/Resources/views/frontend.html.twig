@@ -1,0 +1,124 @@
+{% extends '::base.html.twig' %}
+
+{% block stylesheets %}
+<link href="{{ asset('bundles/frontend/css/stylos.css') }}" rel="stylesheet" type="text/css" />
+<link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
+{% endblock %}
+
+{% block const_js %}
+<script>URL_ULTIMAS_OFERTAS = '{{ path('frontend_ultimas_ofertas') }}'</script>
+    {% block const_especificas_js %}{% endblock %}
+{% endblock %}
+
+{% block body %}
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container-fluid">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </a>
+            <a class="brand" href="{{ path('frontend_iniciopage') }}">Ganguera</a>
+            <div class="nav-collapse">
+                <ul class="nav">
+                    <li {% if section_act is defined and section_act == 'inicio' %} class="active" {% endif %}>
+                        <a href="{{ path('frontend_iniciopage') }}">Inicio</a>
+                    </li>
+                    {% if is_granted('ROLE_USUARIO') %}    
+                    <li {% if section_act is defined and section_act == 'insertar_oferta' %} class="active" {% endif %}>
+                        <a href="{{ path('frontend_add_oferta') }}">Publicar oferta</a>
+                    </li>
+                    {% endif %}
+                    <li {% if section_act is defined and section_act == 'mapasitio' %} class="active" {% endif %}>
+                        <a href="{{ path('frontend_mapasitio') }}">Mapa del sitio</a>
+                    </li>
+
+                    <li {% if section_act is defined and section_act == 'ayuda' %} class="active" {% endif %}>
+                        <a href="{{ path('frontend_helppage') }}">Ayuda</a>
+                    </li>
+
+                    <li><a href="{{ path('frontend_iniciopage') }}">Contacto</a></li>
+                    <!--<li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Provincias <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Action</a></li>
+                            <li><a href="#">Action</a></li>
+                            <li><a href="#">Action</a></li>
+                        </ul>
+                    </li>-->
+                    {% if is_granted('ROLE_USUARIO') %}
+                    <li class="divider-vertical"></li>
+                    <li><a href="{{ path('backend_iniciopage') }}" target="_blank">Super-Admin</a></li>
+                    <li class="divider-vertical"></li>
+                    {% endif %}
+                    </ul>
+
+                {% include 'FrontendBundle:Usuario:login_infouser.html.twig' %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="row-fluid">
+            <div class="span9">
+                <div class="row-fluid">
+            {% for tipo, mensajes in app.session.flashbag.all() %}
+                        <div class="alert {% if tipo == 'bueno' %}alert-success
+                            {% elseif tipo == 'error' %}alert-error{% else %}
+                             alert-info{%endif%}">
+                                 <a class="close" data-dismiss="alert">×</a>
+                                 <ul>
+                        {% for mensaje in mensajes %}
+                                         <li>{{ mensaje }}</li>
+                        {% endfor %}
+                                         </ul>
+                                     </div>
+            {% endfor %}
+                                 </div>
+                    {% block contenido %}{% endblock %}
+                             </div>
+                             <!-- sidebar que se puede poner en otro archivo plantillete -->
+                             <div class="span3">
+                    {% include 'FrontendBundle::sidebar.html.twig' %}
+                                 </div>
+                             </div>
+                             <hr/>
+                             <footer>
+                                 <p>&copy; Ganguera Ofertas - {{ 'now' | date('Y') }}</p>
+                             </footer>
+                        </div>
+{% endblock %}
+
+{% block javascripts %}
+
+                        <script src="{{ asset('bundles/frontend/js/scripts.js') }}"></script>
+                        <script src="{{ asset('bundles/frontend/js/bootstrap-dropdown.js') }}"></script>
+
+        {% block javascripts_especificos %}{% endblock %}
+
+        {% if is_granted('ROLE_USUARIO') %}
+                        <script>
+    var url = '{{ path('frontend_ultimas_ofertas_prov') }}'
+    $(document).ready(function() {
+        load_elem_listados('#ul_timas_ofertas_prov_id', url,
+                '#li_loader_a_borrar_ultofprov', 'icon-chevron-right', {
+            'slug': '{{ app.user.provincia.nombretoshow }}'
+        })
+    })
+                            </script>
+        {% endif %}
+
+     {% if section_act is not defined or section_act != 'inicio' %}
+         <script>
+             url_lp = '{{ path('frontend_allprovs') }}'
+             slug_act = ''
+             {% if slug_act is defined %}
+                 slug_act = '{{ slug_act }}'
+             {% endif %}
+         </script>
+         <script src="{{ asset('bundles/frontend/js/script_listprovs.js') }}"></script>
+     {% endif %}
+{% endblock %}

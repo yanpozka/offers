@@ -1,0 +1,16 @@
+# web/bundles/
+# app/config/parameters.yml
+# por el momento quitar estos:
+# app/bootstrap*
+
+nbproject/
+.idea/
+
+## Hay que crear un archivo .gitignore en app/cache/ y en app/logs/
+## con este contenido (descomentando las líneas * y !):
+#
+## Ignorar todos los ficheros...
+# *
+
+# ...excepto el fichero .gitignore
+# !.gitignore

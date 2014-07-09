@@ -1,0 +1,42 @@
+
+<fieldset>
+    <legend>{{ oferta.titulo }}</legend>
+    <p><span class="label label-important">Costo:</span> <b> ${{ oferta.cost }} </b>
+        <span class="label">Desde</span> {{ oferta.datestart | date('Y-m-d') }} 
+        <span class="label label-inverse">Hasta</span> {{ oferta.datefinish | date('Y-m-d') }}
+    </p>
+
+    <p><span class="label label-warning">Descripci&oacute;n: </span> </p>
+
+    <blockquote>
+        <p>{{ oferta.description }}</p>
+    </blockquote>
+
+    <p>
+        <span class="label label-warning">Provincia:</span>
+        <b><a href="{{ path('frontend_ver_ofertas_prov', {'prov': oferta.provincia.nombretoshow}) }}">{{ oferta.provincia }}</a></b>
+    </p>
+
+    <p>
+        <span class="label label-warning">Im&aacute;genes:</span>
+        {% include 'FrontendBundle:Ofertas:pics_oferta.html.twig' %}
+    </p>
+
+    <div class="container-fluid">
+        <div class="row-fluid">
+            <div class="well span5">
+                <address>
+                    Publicador: <strong><a href="{{ path('frontend_usuario_detalles', {'id_user': oferta.usuario.id}) }}">{{ oferta.usuario }}</a></strong>
+                    <br>
+                    Direcci&oacute;n: {{ oferta.usuario.direccion }}
+                    <br>
+                    Correo: <a href="mailto:{{ oferta.usuario.correo }}">{{ oferta.usuario.correo }}</a>
+                    <br>
+                    <abbr title="Telefono">Tel&eacute;fono: </abbr> {{ oferta.usuario.phone }}
+                </address>
+            </div>
+        </div>
+    </div>
+
+</fieldset>
+

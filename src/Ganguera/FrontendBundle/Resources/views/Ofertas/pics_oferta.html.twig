@@ -1,0 +1,17 @@
+<div class="row-fluid">
+{% if oferta.path_img %}
+    <div class="span3 contendor_img">
+        <img width="150" height="150" src="{{ asset(oferta.getWebPathFirst()) }}" />
+    </div>
+{% endif %}
+{% if oferta.path_img_1 %}
+    <div class="span3 contendor_img">
+        <img width="150" height="150" src="{{ asset(oferta.getWebPathSec()) }}" />
+    </div>
+{% endif %}
+        {% if oferta.path_img_2 %}
+    <div class="span3 contendor_img">
+        <img width="150" height="150" src="{{ asset(oferta.getWebPathTr()) }}" />
+    </div>
+{% endif %}
+</div>

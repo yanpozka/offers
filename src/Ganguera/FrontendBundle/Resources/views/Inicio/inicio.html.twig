@@ -1,0 +1,45 @@
+{% extends '::frontend.html.twig' %}
+
+{% block title %}
+    {{ title }} - Ganguera | Ofertas Ganguera
+{% endblock %}
+
+{% block contenido %}
+
+<div class="hero-unit">
+    <h2>Escoja la provincia para ver las ofertas ;)</h2>
+    <br/>
+    <br/>
+{% for prov_section in provs_list %}
+    <div class="row-fluid">
+        {% for prov in prov_section  %}
+            <div class="span{{ tamano_span }}">
+                <p>
+                    <a class="btn btn-primary btn-large" 
+                       href="{{ path('frontend_ver_ofertas_prov', {'prov': prov.nombretoshow}) }}">
+                    {{ prov.nombre }}
+                    </a>
+                </p>
+            </div>
+         {% endfor %}
+        </div>
+{% endfor %}
+    </div>
+    <fieldset style="border-style: solid; border-color: #0088cc; border-width: 2px; border-radius: 4px; ">
+    <table class="table table-striped">
+        {% for oferta in ult_ofertas_list  %}
+            <tr>
+                <td><a href="{{ oferta.url }}">{{ oferta.label }}</a></td>
+            </tr>
+        {% endfor %}
+        </table>
+
+        <div class="pagination">
+            <ul>
+                <li><a href="{{ prev_url }}">&lAarr;</a></li>
+                <li><a href="{{ next_url }}">&rAarr;</a></li>
+            </ul>
+        </div>
+    </fieldset>
+    
+{% endblock %}

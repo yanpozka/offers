@@ -1,0 +1,30 @@
+backend_user:
+    pattern:  /
+    defaults: { _controller: "BackendBundle:Usuario:index" }
+
+backend_user_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "BackendBundle:Usuario:show" }
+
+backend_user_new:
+    pattern:  /new
+    defaults: { _controller: "BackendBundle:Usuario:new" }
+
+backend_user_create:
+    pattern:  /create
+    defaults: { _controller: "BackendBundle:Usuario:create" }
+    requirements: { _method: post }
+
+backend_user_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "BackendBundle:Usuario:edit" }
+
+backend_user_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "BackendBundle:Usuario:update" }
+    requirements: { _method: post|put }
+
+backend_user_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "BackendBundle:Usuario:delete" }
+    requirements: { _method: post|delete }

@@ -1,0 +1,83 @@
+#
+## Inicios ##
+#
+frontend_iniciopage:
+    pattern:  /inicio
+    defaults: { _controller: FrontendBundle:Ofertas:inicio }
+_frontend_iniciopage:
+    pattern:  /inicio/{page}
+    defaults: { _controller: FrontendBundle:Ofertas:inicio }
+__frontend_iniciopage:
+    pattern:  /
+    defaults: { _controller: FrontendBundle:Ofertas:inicio }
+
+frontend_helppage:
+    pattern:  /ayuda
+    defaults: { _controller: FrontendBundle:Default:ayuda }
+
+frontend_mapasitio:
+    pattern:  /mapsitio
+    defaults: { _controller: FrontendBundle:Default:mapasitio }
+    
+frontend_allprovs:
+    pattern:  /allprovincias
+    defaults: { _controller: FrontendBundle:Default:listProvincias }
+    requirements: { _method: post }
+## Inicio y staticas ##
+
+#
+##   Ofertas  ##
+#
+frontend_ver_ofertas_prov:
+    pattern:  /{prov}/ofertas.{_format}
+    defaults: { _controller: FrontendBundle:Ofertas:provinciaOfertas, _format: html }
+    requirements:
+        _format: html
+    
+frontend_ofertas_recientes_prov:
+    pattern:  /{prov}/ofertas_recientes
+    defaults: { _controller: FrontendBundle:OfertasRss:recientes, _format: rss }
+    requirements:
+        _format: rss
+
+frontend_get_ofertas_prov:
+    pattern:  /ofertas/todas
+    defaults: { _controller: FrontendBundle:Ofertas:getOfertasProv }
+
+frontend_add_oferta:
+    pattern:  /oferta/crear
+    defaults: { _controller: FrontendBundle:Ofertas:insertar }
+
+frontend_ver_oferta:
+    pattern:  /oferta/{id_oferta}/ver
+    defaults: { _controller: FrontendBundle:Ofertas:detalles }
+
+frontend_ultimas_ofertas:
+    pattern:  /oferta/ultimas
+    defaults: { _controller: FrontendBundle:Ofertas:ultimasOfertas }
+    requirements: { _method: post }
+
+frontend_ultimas_ofertas_prov:
+    pattern:  /oferta/ultimasprov
+    defaults: { _controller: FrontendBundle:Ofertas:ultimasOfertasProv }
+    requirements: { _method: post }
+##   Ofertas  ##
+
+#
+##   Usuario  ##
+#
+frontend_usuario_registrar:
+    pattern:  /usuario/registro
+    defaults: { _controller: FrontendBundle:User:registro }
+
+frontend_usuario_detalles:
+    pattern: /usuario/{id_user}/ver
+    defaults: { _controller: FrontendBundle:User:detallesUser }
+
+frontend_login_check:
+    pattern: /login_check
+
+frontend_usuario_logout:
+    pattern: /logout
+#    requirements: { _method: post }
+##   Usuario  ##

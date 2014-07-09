@@ -1,0 +1,23 @@
+{% extends '::backend.html.twig' %}
+
+{% block contenido -%}
+
+<a class="btn btn-inverse" href="{{ path('backend_user') }}"><< Regresar al listado</a>
+<br/>
+
+<form class="form-horizontal" action="{{ path('backend_user_create') }}" method="post" {{ form_enctype(form) }}>
+        <fieldset>
+            <legend>Registrar usuario</legend>
+            
+            {% include 'FrontendBundle:Usuario:campos_registro_usuario.html.twig' with {'formulario': form} only %}
+        </fieldset>
+        {{ form_rest(form) }}
+    
+    </form>
+{% endblock %}
+
+{% block javascripts %}
+     <script src="{{ asset('bundles/frontend/js/bootstrap-transition.js') }}"></script>
+     <script src="{{ asset('bundles/frontend/js/bootstrap-tooltip.js') }}"></script>
+{% endblock %}
+    

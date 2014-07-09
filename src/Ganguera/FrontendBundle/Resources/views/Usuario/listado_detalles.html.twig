@@ -1,0 +1,30 @@
+<ul style="list-style: none">
+    <li>
+        Nombre: <strong>{{ usuario }}</strong>
+    </li>
+    <li>
+        Correo: <strong><a href="mailto:{{ usuario.correo }}">{{ usuario.correo }}</a></strong>
+    </li>
+    <li>
+        Tel&eacute;fono: <strong>{{ usuario.phone }}</strong>
+    </li>
+    <li>
+        Provincia: <strong><a href="{{ path('frontend_ver_ofertas_prov', { 'prov': usuario.provincia.nombretoshow }) }}">{{ usuario.provincia }}</a></strong>
+    </li>
+    {% if usuario.direccion %}
+        <li>
+            Direcci&oacute;n:
+            <blockquote>
+                {{ usuario.direccion }}
+            </blockquote>
+        </li>
+    {% endif %}
+    {% if usuario.declaracion %}
+        <li>
+            Declaraci&oacute;n:
+            <blockquote>
+                {{ usuario.declaracion }}
+            </blockquote>
+        </li>
+    {% endif %}
+</ul>

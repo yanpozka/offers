@@ -1,0 +1,36 @@
+security:
+    encoders:
+        Ganguera\FrontendBundle\Entity\Usuario: { algorithm: sha512, iterations: 10 }
+
+    providers:
+        usuarios:
+          entity: { class: Ganguera\FrontendBundle\Entity\Usuario, property: correo }
+
+    firewalls:
+        dev:
+            pattern:  ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+
+        frontend:
+            pattern: ^/*
+            anonymous: ~
+            logout:
+                path: frontend_usuario_logout
+                target: frontend_iniciopage
+            form_login:
+                use_referer: true
+                login_path: frontend_iniciopage
+                check_path: frontend_login_check
+#                default_target_path: PONER ALGO AKI
+#                always_use_default_target_path: true
+
+    access_control:
+        - { path: ^/oferta/crear, roles: [ROLE_USUARIO, ROLE_ADMIN] }
+        - { path: ^/bckadmin/*, roles: [ROLE_USUARIO, ROLE_ADMIN] }
+
+
+#        - { path: ^/demo/secured/hello/admin/, roles: ROLE_ADMIN }
+#        - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }
+#    role_hierarchy:
+#        ROLE_ADMIN:       ROLE_USER
+#        ROLE_SUPER_ADMIN: [ROLE_USER, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]

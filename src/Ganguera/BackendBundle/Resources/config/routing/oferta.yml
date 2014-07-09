@@ -1,0 +1,21 @@
+oferta:
+    pattern:  /
+    defaults: { _controller: "BackendBundle:Oferta:index" }
+
+oferta_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "BackendBundle:Oferta:show" }
+
+oferta_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "BackendBundle:Oferta:edit" }
+
+oferta_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "BackendBundle:Oferta:update" }
+    requirements: { _method: post|put }
+
+oferta_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "BackendBundle:Oferta:delete" }
+    requirements: { _method: post|delete }

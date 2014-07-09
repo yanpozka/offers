@@ -1,0 +1,43 @@
+
+{% if section_act is not defined or section_act != 'inicio' %}
+
+<div class="well sidebar-nav">
+    <ul class="nav nav-list" id="list_provincias">
+        <li class="nav-header">Provincias</li>
+        <li id="li_loader_list_prov" style="text-align: center">
+            <img src="{{ asset('bundles/frontend/img/loader.gif') }}" />
+        </li>
+    </ul>
+</div>
+
+<div class="well sidebar-nav">
+    <ul class="nav nav-list" id="ul_timas_ofertas">
+        <li class="nav-header">&Uacute;ltimas ofertas</li>
+        <li id="li_loader_a_borrar" style="text-align: center">
+            <img src="{{ asset('bundles/frontend/img/loader.gif') }}" />
+        </li>
+    </ul>
+</div>
+{% endif %}
+
+{% if is_granted('ROLE_USUARIO') %}
+<div class="well sidebar-nav">
+    <ul class="nav nav-list" id="ul_timas_ofertas_prov_id">
+        <li class="nav-header">&Uacute;ltimas ofertas de su Provincia</li>
+        <li id="li_loader_a_borrar_ultofprov" style="text-align: center">
+            <img src="{{ asset('bundles/frontend/img/loader.gif') }}" />
+        </li>
+    </ul>
+</div>
+{% endif %}
+
+<div class="well sidebar-nav">
+    <ul class="nav nav-list">
+        <li class="nav-header">Enlaces</li>
+        <li><a href="http://google.com"><i class="icon-fire"></i>Google</a></li>
+        <li><a href="http://yashira.org"><i class="icon-fire"></i>Yashira</a></li>
+        <li><a href="http://wikipedia.org"><i class="icon-fire"></i>Wikipedia</a></li>
+        <li><a href="http://symfony.org"><i class="icon-fire"></i>Symfony</a></li>
+    </ul>
+</div>
+

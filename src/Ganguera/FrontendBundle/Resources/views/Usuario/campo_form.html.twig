@@ -1,0 +1,23 @@
+{% macro campo(elem, attr) %}
+    {{ form_widget(elem, { 'attr': attr}) }}
+{% endmacro %}
+
+{% macro div_fila(elem, attr, help_text) %}
+    <div class="control-group{% if form_errors(elem) %} error{% endif %}">
+        <label class="control-label" for="input_">{{ (form_label(elem) | striptags) ~ ':' }}</label>
+        <div class="controls">
+            {% if 1 %}
+            {{ _self.campo(elem, attr) }}
+            {% endif %}
+            {% if help_text %}
+                <a href="#a">
+                    <i class="icon-warning-sign" rel="tooltip" title="{{ help_text }}"></i>
+                </a>
+              {% endif %}
+            <span class="help-inline">
+              
+              {{ form_errors(elem) }}
+            </span>
+        </div>
+    </div>
+{% endmacro %}

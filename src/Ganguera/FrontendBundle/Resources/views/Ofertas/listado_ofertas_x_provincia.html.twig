@@ -1,0 +1,90 @@
+{% extends '::frontend.html.twig' %}
+
+{% block title %}Ofertas {{ title }}{% endblock %}
+
+{% block rss %}
+<link rel="alternate" type="application/rss+xml" title="RSS de las ofertas más
+recientes en {{ title }}" href="{{ path('frontend_ofertas_recientes_prov', { 'prov': slug_act, '_format': 'rss' }) }}" />
+{% endblock %}
+
+{% block contenido %}
+<h3 style="text-align: center">Ofertas de la provincia {{ title }}</h3>
+
+<div class="well container-fluid">
+    <div class="row-fluid">
+        <div class="alert alert-error hidden" id="area_error">
+            <a class="close" data-dismiss="alert">x</a>
+                   {% if form_errors(formulario) %}
+                        {{ form_errors(formulario) }}
+                   {% endif %}
+        </div>
+    </div>
+
+    <div class="row-fluid" id="form_buscar">
+        <div class="span2">
+            <button type="submit" id="boton_buscar" class="btn btn-danger btn-large"><i class="icon-search"></i> Buscar</button>
+        </div>
+        <div class="span2">
+            <!-- <input type="text" class="input-small search-query" placeholder="T&iacute;tulo ..."> -->
+                {{ form_widget(formulario.titulo, { 'attr': {
+                    'size' : 25,
+                    'class':'input-small search-query',
+                    'placeholder': 'Titulo...'
+                }
+                })}}
+        </div>
+        <div class="span3">
+            <!-- <input type="text" class="input-medium search-query" size="30" placeholder="Descripci&oacute;n ... "> -->
+                {{ form_widget(formulario.description, { 'attr': {
+                    'size' : 30,
+                    'class':'input-medium search-query',
+                    'placeholder': 'Descripcion...'
+                }
+                })}}
+        </div>
+        <div class="span1">
+            <!-- <input type="number" class="input-mini" min="0" placeholder="min"> -->
+            {{ form_widget(formulario.costo_min, { 'attr': {
+                'min' : 0,
+                'class':'input-mini',
+                'placeholder': 'min'
+            }
+            })}}
+        </div>
+        <div class="span1">
+            <!-- <input type="number" class="input-mini" min="0" placeholder="max"> -->
+            {{ form_widget(formulario.costo_max, { 'attr': {
+                'min' : 0,
+                'class':'input-mini',
+                'placeholder': 'max'
+            }
+            })}}
+        </div>
+        <div class="span3">
+            <!-- <input type="date" class="input-medium" /> -->
+            {{ form_widget(formulario.fecha, { 'attr': {
+                'class': 'input-medium',
+                'placeholder': 'dia/mes/Anno'
+            }
+            })}}
+        </div>
+        {{ form_rest(formulario) }}
+    </div>
+</div>
+
+<div id="listado"></div>
+
+{% endblock %} 
+
+{% block const_especificas_js %}
+<script>
+    SLUG_ACTUAL = '{{ slug_act }}'
+    URL_GET_OFERTAS_PROV = '{{ url_get_op }}'
+    URL_IMG_LOAD = '{{ asset('bundles/frontend/img/loader.gif') }}'
+</script>
+{% endblock %}
+
+{% block javascripts_especificos %}
+    <script src="{{ asset('bundles/frontend/js/jquery.yan.list-pagination.js') }}"></script>
+    <script src="{{ asset('bundles/frontend/js/mostrar_oferta_prov.js') }}"></script>
+{% endblock %}

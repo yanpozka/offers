@@ -1,0 +1,30 @@
+prov:
+    pattern:  /
+    defaults: { _controller: "BackendBundle:Provincia:index" }
+
+prov_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "BackendBundle:Provincia:show" }
+
+prov_new:
+    pattern:  /new
+    defaults: { _controller: "BackendBundle:Provincia:new" }
+
+prov_create:
+    pattern:  /create
+    defaults: { _controller: "BackendBundle:Provincia:create" }
+    requirements: { _method: post }
+
+prov_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "BackendBundle:Provincia:edit" }
+
+prov_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "BackendBundle:Provincia:update" }
+    requirements: { _method: post|put }
+
+prov_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "BackendBundle:Provincia:delete" }
+    requirements: { _method: post|delete }

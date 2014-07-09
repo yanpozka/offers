@@ -1,0 +1,15 @@
+backend_iniciopage:
+    pattern:  /
+    defaults: { _controller: BackendBundle:Default:index }
+
+backend_user:
+    resource: "@BackendBundle/Resources/config/routing/usuario.yml"
+    prefix:   /user
+
+Backend_prov:
+   resource: "@BackendBundle/Resources/config/routing/provincia.yml"
+   prefix:   /prov
+
+backend_oferta:
+   resource: "@BackendBundle/Resources/config/routing/oferta.yml"
+   prefix:   /oferta

@@ -1,0 +1,63 @@
+{% extends '::frontend.html.twig' %}
+
+{% block contenido %}
+<div class="row-fluid">
+    <fieldset>
+        <legend>{{ title }}</legend>
+
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span4">
+                        {% if usuario.imgavatar %}
+                        <img width="200" height="200" src="{{ asset(usuario.getWebPath()) }}" />
+                        {% else %}
+                        <img src="{{ asset('personal.png') }}" />
+                        {% endif %}
+                </div>
+                <div class="span7">
+                    {% include 'FrontendBundle:Usuario:listado_detalles.html.twig' with {usuario: usuario} only %}
+                </div>
+            </div>
+         </div>
+    </fieldset>
+
+    {% if update %}
+            <div class="row-fluid">
+                <form class="form-horizontal" action="" method="post" {{ form_enctype(formulario) }}>
+                    <fieldset>
+                        <legend>Actualizar datos</legend>
+                        {% if form_errors(formulario) %}
+                        <div class="alert alert-error">
+                            <a class="close" data-dismiss="alert">x</a>
+                    {{ form_errors(formulario) }}
+                        </div>
+            {% endif %}
+                    {% from 'FrontendBundle:Usuario:campo_form.html.twig' import div_fila %}
+
+                    {{ div_fila(formulario.nombre, {'placeholder': 'Comenzando con mayusculas'},
+                                'Debe comenzar por mayusculas y contener solo letras, numero y espacios.') }}
+                    {#{ div_fila(formulario.correo) }#}
+                    {{ div_fila(formulario.phone) }}
+                    {{ div_fila(formulario.direccion, { 'rows': 5, 'cols': 26 }) }}
+                    {{ div_fila(formulario.declaracion, { 'rows': 5, 'cols': 26 }) }}
+                    {#{ div_fila(formulario.imgavatar, {}, 
+                        'Debe ser una imagen valida(jpeg, gif o png) y no exceder de un megabyte.') }#}
+                    {{ div_fila(formulario.provincia) }}
+                    {{ form_rest(formulario) }}
+                        <div class="control-group">
+                            <label class="control-label" for=""></label>
+                            <div class="controls">
+                                <p>
+                                    <button class="btn btn-primary" type="submit">Actualizar</button>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <button type="reset" class="btn btn-warning" />Limpiar</button>
+                                </p>
+                                <span class="help-inline"></span>
+                            </div>
+                        </div>    
+                    </fieldset>
+                </form>
+            </div>
+    {% endif %}
+        </div>
+{% endblock %}
