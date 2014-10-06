@@ -1,4 +1,4 @@
-ofertas
-=======
+Easy Offers
+===========
 
-ofertas system build with Symfony 2
+System of Offers build with Symfony 2 and Twitter-Bootstrap
